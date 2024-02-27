@@ -70,13 +70,13 @@
                                     <label class="form-check-label" for="inlineRadio2">Female</label>
                             </div>
                             <div class="form-check form-check-inline">
-                            @if ($emp->gender == 'Other')
-                                <input class="form-check-input" type="radio" name="gender" id="inlineRadio3"
-                                    value="Others" checked>
-                                    @else
+                                @if ($emp->gender == 'Other')
                                     <input class="form-check-input" type="radio" name="gender" id="inlineRadio3"
-                                    value="Others" >
-                                    @endif
+                                        value="Others" checked>
+                                @else
+                                    <input class="form-check-input" type="radio" name="gender" id="inlineRadio3"
+                                        value="Others">
+                                @endif
                                 <label class="form-check-label" for="inlineRadio3">Others</label>
                             </div>
                         </div>
