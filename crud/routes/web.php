@@ -23,4 +23,5 @@ Route::post('/create',[EmployeController::class,'createEmp'])->name('emp.create'
 Route::get('/',[EmployeController::class,'showEmp'])->name('emp.show');
 Route::get('/single/{id}',[EmployeController::class,'singleEmp'])->name('emp.single');
 Route::get('/edit/{id}',[EmployeController::class,'editEmp'])->name('emp.edit');
+
 Route::get('/view',[DepartmentController::class,'showDept'])->name('emp.form');
