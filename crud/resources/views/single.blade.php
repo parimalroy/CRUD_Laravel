@@ -24,7 +24,7 @@
             </thead> --}}
             <tbody>
                 @foreach ($employes as $id => $emp)
-                <h1 class="text-primary">{{$emp->name}} -Details</h1>
+                    <h1 class="text-primary">{{ $emp->name }} -Details</h1>
                     <tr>
                         <th>Name :</th>
                         <td>{{ $emp->name }}</td>
@@ -48,28 +48,30 @@
                     <tr>
                         <th>Hobby:</th>
                         <td>
-                        @php
-                        $hobbys = json_decode($emp->hobby)
-                        @endphp
-                        @if(!empty($hobbys))
-                        @foreach ($hobbys as $hobby )
-                            @if(count($hobbys)>1)
-                            {{$hobby}}/
+                            @php
+                                $hobbys = json_decode($emp->hobby);
+                            @endphp
+                            @if (!empty($hobbys))
+                                @foreach ($hobbys as $hobby)
+                                    @if (count($hobbys) > 1)
+                                        {{ $hobby }}/
+                                    @else
+                                        {{ $hobby }}
+                                    @endif
+                                @endforeach
                             @else
-                            {{$hobby}}
+                                No Hobby Found
                             @endif
-                        @endforeach
-                        @else
-                        No Hobby Found
-                        @endif
                         </td>
                     </tr>
 
 
                     <tr>
-                    <td></td>
-                    <td><a href="{{route('emp.edit',$emp->id)}}" class="btn btn-warning">Edit-{{$emp->name}} profile</a> 
-                    {{-- <a href="{{route('delete.student',$students->id)}}" class="btn btn-danger">Delete</a></td> --}}
+                        <td></td>
+                        <td><a href="{{ route('emp.edit', $emp->id) }}" class="btn btn-warning">Edit-{{ $emp->name }}
+                                profile</a>
+                            <a href="{{ route('emp.show') }}" class="btn btn-primary">Back</a>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>

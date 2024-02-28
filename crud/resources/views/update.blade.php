@@ -13,7 +13,7 @@
     <div class="container">
         <h1 class="pb-5">Create Employes</h1>
         @foreach ($employes as $emp)
-            <form action="" method="post">
+            <form action="{{ route('emp.update', $emp->id) }}" method="post">
                 @csrf
                 @foreach ($employes as $id => $emp)
                     <div class="row pb-4 ">
@@ -33,11 +33,13 @@
                                 aria-label="First name">
                         </div>
                         <div class="col">
-                            {{-- <select class="form-select" aria-label="Default select example" name="department">
-                    @foreach ($department as $id => $dept)
-                        
-                        <option name="{{$dept->DeptName}}" value="{{$dept->id}}">{{$dept->DeptName}}</option>
-                    @endforeach --}}
+                            <select class="form-select" aria-label="Default select example" name="department">
+                                <option name="{{ $emp->DeptName }}" value="{{ $emp->dept_id }}">{{ $emp->DeptName }}
+                                </option>
+                                @foreach ($department as $id => $dept)
+                                    <option name="{{ $dept->DeptName }}" value="{{ $dept->id }}">
+                                        {{ $dept->DeptName }}</option>
+                                @endforeach
                             </select>
                         </div>
 

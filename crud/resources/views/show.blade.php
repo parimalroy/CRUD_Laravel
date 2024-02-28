@@ -13,14 +13,13 @@
 
     <div class="container">
         <h1>All Employes</h1>
-        {{-- <a href="" class="btn btn-primary">Add New</a> --}}
-
-        <form action="" method="post">
+        <form action="{{route('emp.delete')}}" method="post">
             @csrf
             <table class="table">
                 <thead>
                     <tr>
-
+                        
+                        <th scope="col">Select</th>
                         <th scope="col">Name</th>
                         <th scope="col">Email</th>
                         <th scope="col">Position</th>
@@ -34,6 +33,7 @@
                     @foreach ($employes as $id => $emp)
                         @if ($emp->id > 0)
                             <tr>
+                                <td><input type="checkbox" name="ids[{{$emp->id}}" value="{{$emp->id}}"></td>
                                 <td>{{ $emp->name }}</td>
                                 <td>{{ $emp->email }}</td>
                                 <td>{{ $emp->position }}</td>
