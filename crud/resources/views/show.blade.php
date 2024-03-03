@@ -33,7 +33,7 @@
                     @foreach ($employes as $id => $emp)
                         @if ($emp->id > 0)
                             <tr>
-                                <td><input type="checkbox" name="ids[{{$emp->id}}" value="{{$emp->id}}"></td>
+                                <td><input type="checkbox" name="ids[{{$emp->id}}]" value="{{$emp->id}}"></td>
                                 <td>{{ $emp->name }}</td>
                                 <td>{{ $emp->email }}</td>
                                 <td>{{ $emp->position }}</td>

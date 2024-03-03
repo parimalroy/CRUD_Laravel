@@ -10,7 +10,16 @@ class EmployeController extends Controller
     //insert Employes
     public function createEmp(Request $req)
     {
-        $emp = DB::table('employes')->insert([
+        // $req->validate([
+        //     'name'=>'required',
+        //     'email'=>'required | unique:employes,email',
+        //     'position'=>'required',
+        //     'address'=>'required',
+        //     'gender'=>'required',
+        //     'dept_id'=>'required'
+        // ]);
+       
+         DB::table('employes')->insert([
             'name' => $req->name,
             'email' => $req->email,
             'position' => $req->position,
@@ -19,7 +28,7 @@ class EmployeController extends Controller
             'hobby' => json_encode($req->hobby),
             'dept_id' => $req->department,
         ]);
-
+        
         return redirect()->route('emp.show');
     }
 

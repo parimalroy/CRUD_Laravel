@@ -16,25 +16,37 @@
             @csrf
             <div class="row pb-4 ">
                 <div class="col">
-                    <input type="text" class="form-control" name="name" placeholder="Name"
+                    <input type="text" class="form-control @error('name') is-invalid @enderror" value="{{old('name')}}" name="name" placeholder="Name"
                         aria-label="First name">
+                        @error('name')
+                            <div class="text text-danger">{{ $message }}</div>
+                        @enderror
                 </div>
                 <div class="col">
-                    <input type="text" class="form-control" name="email" placeholder="Email"
+                    <input type="text" class="form-control @error('email') is-invalid @enderror" value="{{old('email')}}" name="email" placeholder="Email"
                         aria-label="Last name">
+                        @error('email')
+                            <div class="text text-danger">{{ $message }}</div>
+                        @enderror
                 </div>
 
             </div>
             <div class="row pb-4">
                 <div class="col">
-                    <input type="text" class="form-control" name="position" placeholder="Position"
+                    <input type="text" class="form-control @error('position') is-invalid @enderror" value="{{old('position')}}" name="position" placeholder="Position"
                         aria-label="First name">
+                        @error('position')
+                            <div class="text text-danger">{{ $message }}</div>
+                        @enderror
                 </div>
                 <div class="col">
-                    <select class="form-select" aria-label="Default select example" name="department">
+                    <select class="form-select @error('department') is-invalid @enderror" aria-label="Default select example" name="department">
+                    @error('department')
+                            <div class="text text-danger">{{ $message }}</div>
+                        @enderror
                     @foreach ($department as $id=>$dept )
                         
-                        <option name="{{$dept->DeptName}}" value="{{$dept->id}}">{{$dept->DeptName}}</option>
+                       <option name="{{$dept->DeptName}}" value="{{$dept->id}}">{{$dept->DeptName}}</option>
                     @endforeach
                     </select>
                 </div>
@@ -42,15 +54,19 @@
             </div>
             <div class="row pb-4">
                 <div class="col">
-                    <input type="text" class="form-control" name="address" placeholder="address"
+                    <input type="text" class="form-control @error('address') is-invalid @enderror" value="{{old('address')}}" name="address" placeholder="address"
                         aria-label="First name">
+                        @error('address')
+                            <div class="text text-danger">{{ $message }}</div>
+                        @enderror
                 </div>
                 <div class="col">
                 <div class="form-check form-check-inline">
                <b> Select Gender:</b>
                 </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="gender" id="inlineRadio1"
+                    <div class="form-check form-check-inline @error('gender') is-invalid @enderror">
+                    
+                        <input class="form-check-input " type="radio" name="gender" id="inlineRadio1"
                             value="Male">
                         <label class="form-check-label" for="inlineRadio1">Male</label>
                     </div>
@@ -64,6 +80,9 @@
                             value="Others" >
                         <label class="form-check-label" for="inlineRadio3">Others</label>
                     </div>
+                    @error('gender')
+                            <div class="text text-danger">{{ $message }}</div>
+                        @enderror
                 </div>
 
             </div>
