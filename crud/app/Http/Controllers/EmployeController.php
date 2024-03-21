@@ -28,27 +28,35 @@ class EmployeController extends Controller
             'hobby' => json_encode($req->hobby),
             'dept_id' => $req->department,
         ]);
-        
+        toastr()->success('Data has been saved successfully!', 'Congrats');
         return redirect()->route('emp.show');
     }
 
     //show all Employe
     public function showEmp()
     {
-        $emp = DB::table('employes')->join('departments', 'employes.dept_id', '=', 'departments.id')->select('employes.id', 'employes.name', 'employes.email', 'employes.position', 'employes.gender', 'employes.hobby', 'employes.address', 'departments.DeptName')->get();
+        $emp = DB::table('employes')
+        ->join('departments', 'employes.dept_id', '=', 'departments.id')
+        ->select('employes.id', 'employes.name', 'employes.email', 'employes.position', 'employes.gender', 'employes.hobby', 'employes.address', 'departments.DeptName')
+        ->paginate(5);
         return view('show', ['employes' => $emp]);
     }
 
     //show single emp
     public function singleEmp(string $id)
     {
-        $emp = DB::table('employes')->join('departments', 'employes.dept_id', '=', 'departments.id')->select('employes.id', 'employes.name', 'employes.email', 'employes.position', 'employes.gender', 'employes.hobby', 'employes.address', 'departments.DeptName')->where('employes.id', $id)->get();
+        $emp = DB::table('employes')
+        ->join('departments', 'employes.dept_id', '=', 'departments.id')
+        ->select('employes.id', 'employes.name', 'employes.email', 'employes.position', 'employes.gender', 'employes.hobby', 'employes.address', 'departments.DeptName')->where('employes.id', $id)
+        ->get();
         return view('single', ['employes' => $emp]);
     }
 
     public function editEmp(string $id)
     {
-        $emp = DB::table('employes')->join('departments', 'employes.dept_id', '=', 'departments.id')->select('employes.id', 'employes.name', 'employes.email', 'employes.position', 'employes.gender', 'employes.hobby', 'employes.address', 'employes.dept_id', 'departments.DeptName')->where('employes.id', $id)->get();
+        $emp = DB::table('employes')->join('departments', 'employes.dept_id', '=', 'departments.id')
+        ->select('employes.id', 'employes.name', 'employes.email', 'employes.position', 'employes.gender', 'employes.hobby', 'employes.address', 'employes.dept_id', 'departments.DeptName')->where('employes.id', $id)
+        ->get();
 
         $dept = DB::table('departments')->get();
         return view('update', ['employes' => $emp, 'department' => $dept]);
@@ -70,7 +78,7 @@ class EmployeController extends Controller
                 'hobby' => json_encode($req->hobby),
                 'dept_id' => $req->department,
             ]);
-
+        toastr()->success('Data has been Updated successfully!', 'Congrats');
         return redirect()->route('emp.single', [$id]);
     }
 
